@@ -75,6 +75,12 @@ iframe {
 footer {
   position: relative;
   right: 0;bottom:0;left:0;
-  text-align: center;
   
+  background-color:rgb(75, 75, 75)
+}
+
+#footerPTag
+{
+  text-align: center;
+  color: white;
 }
