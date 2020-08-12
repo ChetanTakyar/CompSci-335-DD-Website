@@ -1,0 +1,91 @@
+<!DOCTYPE html> 
+<html> 
+
+<head>
+    <title>Dunedin Dairy</title>
+    <link rel="stylesheet" type="text/css" href="ctak305.css">
+    <script defer = "true" src="ctak305.js"></script>
+    <link rel="icon" href="http://redsox.uoa.auckland.ac.nz/ds/logo-192x192.png">
+</head>
+
+<div class="navigationBar" onload = "hideFunction('Home');">
+    
+    
+    <img style = "filter : invert(75%)" src="http://redsox.uoa.auckland.ac.nz/ds/logo-192x192.png" alt="DD">
+    <button class = "button" onclick = "hideFunction('Home')">Home</button>
+    <button class = "button" onclick = "hideFunction('Products')">Products</button>
+    <button class = "button" onclick = "hideFunction('Location')">Location</button>
+    <button class = "button" onclick = "hideFunction('News')">News</button>
+    <button class = "button" onclick = "hideFunction('Guestbook')">Guestbook</button>
+   
+  </div>
+
+<div class = "TabContent" id = "Home" style = "display:block">
+    <p style="text-align:center;">
+        Do you want fresh milk and cheese?? Of course you do! 
+        <br>
+        Browse through the finest collection of dairy products from Dunedin Dairy today!
+    </p>
+    <br>
+    <img class = "center" src="https://p0.pikrepo.com/preview/935/173/black-and-white-cow-eating-grasses.jpg"  alt = "Cow">
+    
+    
+</div>
+
+<div class = "TabContent" id = "Products" style = "display:none">
+  
+    <input type="text" id="searchItem" oninput="searchFunction()" placeholder="Search for products..">
+    
+    <table id = "ProductsTable"></table>
+    
+    
+</div>
+
+
+<div class = "TabContent" id = "Location" style = "display:none">
+    <p>
+        <a href="tel:+64 3 448 6256">Call us now!</a> or feel free to <a href = "mailto: info@DunedinDairy.co.nz">send us mail!</a>
+    </p>
+
+    <p class = "center">The map to find us:</p>
+    <br>
+    <img class = "center" src="http://redsox.uoa.auckland.ac.nz/ds/map.png"  width = "400" height = "300" alt = "Location Map"> 
+    
+    <address>
+        Come visit us at:
+        535 Pine Hill Road, Dunedin, New Zealand
+    </address>
+</div>
+
+
+<div class = "TabContent" id = "News" style = "display:none">
+   <br>
+   <br>
+    <table id = "NewsTable"> </table>
+</div>
+
+
+<div class = "TabContent" id = "Guestbook" style = "display:none">
+
+    <div>
+        <form>
+            <label id = "comment">Your Comment:</label><br>
+            <input type="text" id="comment" name="comment"><br>
+            <label for="name">Name:</label><br>
+            <input type="text" id="name" name="name">
+            <input type="submit" value="Submit">
+        </form>
+    </div>
+    
+    <p>
+        <iframe class = "responsiveiframe" src= "http://redsox.uoa.auckland.ac.nz/ds/DairyService.svc/htmlcomments" title="Comments from our customers!">
+
+        </iframe>
+   </p>
+</div>
+
+<footer>
+    <p id = "footerPTag" id = "center"></p>
+</footer>
+ </html>
+

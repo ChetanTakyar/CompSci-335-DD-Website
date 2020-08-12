@@ -1,0 +1,80 @@
+.navigationBar
+{
+    background-color: rgb(75, 75, 75);
+    overflow: hidden;
+}
+
+.button {
+    background-color: rgb(75, 75, 75);
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+  }
+
+  .navigationBar button:hover {
+    background-color: rgb(92, 93, 95);
+    color: black;
+  }
+
+.input
+{
+ display: inline-block;
+}
+
+.center
+{
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+  
+}
+
+table {
+  border: 1px solid black;
+  text-justify: right;
+  table-layout: fixed;
+}
+
+tr
+{
+  text-align: center;
+}
+
+th.hide
+{
+  visibility: hidden;
+}
+
+p.contactDetails
+{
+  text-align: center;
+  bottom: 20px;
+}
+
+td.wrapText
+{
+  word-break:break-all;
+  text-align: left;
+
+}
+
+iframe {
+  margin: 0; 
+  padding:0;
+  width: 40%;
+  height: 200px;
+  border: 3px solid black;
+  bottom: 0;
+}
+
+footer {
+  position: relative;
+  right: 0;bottom:0;left:0;
+  text-align: center;
+  
+}
