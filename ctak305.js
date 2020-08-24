@@ -196,16 +196,17 @@ function websiteVersion()
 function vcard()
 {
     const vcardURL = "http://redsox.uoa.auckland.ac.nz/ds/DairyService.svc/vcard"
-
     const fetchvCardPromise = fetch(vcardURL,
         {
         headers : {
         "Accept" : "application/json", },
-                });
-                const streamvCard = fetchvCardPromise.then((vCardData) => vCardData.text());
-                streamvCard.then((data)=>{data.split(":"),console.log(data);
-        
-                }); 
-          
+        });
+        const streamvCard = fetchvCardPromise
+        .then((vCardData) => vCardData.text());
+        streamvCard.then(vCardData=> {
+            
+            vCardData = vCardData.split(";");
+            phone = (vCardData[2].split(":", -2));
+            document.getElementById('phoneNumber').innerHTML = phone;
+        })
 }
-
