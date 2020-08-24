@@ -1,5 +1,6 @@
 
 websiteVersion();
+vcard();
 const hideFunction = (visibleDivContent) =>
 {
     
@@ -191,4 +192,20 @@ function websiteVersion()
     streamPromise.then((versionText) => document.getElementById("footerPTag").innerHTML = "Version:" + versionText)
 }
 
+
+function vcard()
+{
+    const vcardURL = "http://redsox.uoa.auckland.ac.nz/ds/DairyService.svc/vcard"
+
+    const fetchvCardPromise = fetch(vcardURL,
+        {
+        headers : {
+        "Accept" : "application/json", },
+                });
+                const streamvCard = fetchvCardPromise.then((vCardData) => vCardData.text());
+                streamvCard.then((data)=>{data.split(":"),console.log(data);
+        
+                }); 
+          
+}
 
