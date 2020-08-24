@@ -205,8 +205,9 @@ function vcard()
         .then((vCardData) => vCardData.text());
         streamvCard.then(vCardData=> {
             
-            vCardData = vCardData.split(";");
-            phone = (vCardData[2].split(":", -2));
-            document.getElementById('phoneNumber').innerHTML = phone;
+            const splitvCardData = vCardData.split("\n");
+            console.log(splitvCardData);
+
+            
         })
 }
