@@ -17,6 +17,7 @@
     <button class = "button" onclick = "hideFunction('Location')">Location</button>
     <button class = "button" onclick = "hideFunction('News')">News</button>
     <button class = "button" onclick = "hideFunction('Guestbook')">Guestbook</button>
+    <button class = "button" onclick = "hideFunction('Login')">Login Page</button>
    
   </div>
 
@@ -44,17 +45,20 @@
 
 <div class = "TabContent" id = "Location" style = "display:none">
     <p>
-        <a id = "phoneNumber" href="tel:">Call us now!</a> or feel free to <a href = "mailto: info@DunedinDairy.co.nz">send us mail!</a>
+        Phone:<a id = "phoneNumber" href="tel:"></a>
+    </p>
+
+    <p>
+        Email:<a id="email" href = "mailto:"></a>
     </p>
 
     <p class = "center">The map to find us:</p>
     <br>
     <img class = "center" src="http://redsox.uoa.auckland.ac.nz/ds/map.png"  width = "400" height = "300" alt = "Location Map"> 
     
-    <address>
-        Come visit us at:
-        535 Pine Hill Road, Dunedin, New Zealand
-    </address>
+    <p>
+        Address:<a id="address"></a>
+    </p>
 </div>
 
 
@@ -69,10 +73,13 @@
 
     <div id = "postingComments">
         
-            <span>Your Comment:</span><br>
-            <textarea type="text" id="comment"></textarea>
             <span>Name:</span><br>
             <input type="text" id="name"></input>
+            <br>
+            <span>Your Comment:</span><br>
+            <textarea type="text" id="comment"></textarea>
+            
+            
             <button onclick = 'postComments()'> Submit your comment</button>
         
     </div>
@@ -84,6 +91,13 @@
    </p>
 </div>
 
+<div class = "TabContent" id = "Login" style = "display:none">
+    <p>
+        Hi
+    </p>
+    
+     
+ </div>
 <footer id= "footer">
     <p id= "footerPTag"></p>
 </footer>

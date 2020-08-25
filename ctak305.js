@@ -2,6 +2,8 @@ websiteVersion();
 vcard();
 const hideFunction = (visibleDivContent) => {
   switch (visibleDivContent) {
+    
+
     case "Home":
       const visibleHomeDiv = document.getElementById("Home");
       visibleHomeDiv.style.display = "block";
@@ -10,11 +12,13 @@ const hideFunction = (visibleDivContent) => {
       let hiddenLocationForHome = document.getElementById("Location");
       let hiddenNewsForHome = document.getElementById("News");
       let hiddenGuestBookForHome = document.getElementById("Guestbook");
+      let hiddenLoginForHome = document.getElementById("Login")
 
       hiddenProductsForHome.style.display = "none";
       hiddenLocationForHome.style.display = "none";
       hiddenNewsForHome.style.display = "none";
       hiddenGuestBookForHome.style.display = "none";
+      hiddenLoginForProducts.style.display = "none";
 
       break;
 
@@ -26,11 +30,13 @@ const hideFunction = (visibleDivContent) => {
       let hiddenLocationForProducts = document.getElementById("Location");
       let hiddenNewsForProducts = document.getElementById("News");
       let hiddenGuestBookForProducts = document.getElementById("Guestbook");
+      let hiddenLoginForProducts = document.getElementById("Login");
 
       hiddenHomeForProducts.style.display = "none";
       hiddenLocationForProducts.style.display = "none";
       hiddenNewsForProducts.style.display = "none";
       hiddenGuestBookForProducts.style.display = "none";
+      hiddenLoginForProducts.style.display = "none";
 
       productFunction();
 
@@ -44,11 +50,13 @@ const hideFunction = (visibleDivContent) => {
       let hiddenProductsForLocation = document.getElementById("Products");
       let hiddenNewsForLocation = document.getElementById("News");
       let hiddenGuestBookForLocation = document.getElementById("Guestbook");
+      let hiddenLoginForLocation = document.getElementById("Login");
 
       hiddenHomeForLocation.style.display = "none";
       hiddenProductsForLocation.style.display = "none";
       hiddenNewsForLocation.style.display = "none";
       hiddenGuestBookForLocation.style.display = "none";
+      hiddenLoginForLocation.style.display = "none";
       break;
 
     case "News":
@@ -59,11 +67,13 @@ const hideFunction = (visibleDivContent) => {
       let hiddenProductsForNews = document.getElementById("Products");
       let hiddenLocationForNews = document.getElementById("Location");
       let hiddenGuestBookForNews = document.getElementById("Guestbook");
+      let hiddenLoginForNews = document.getElementById("Login");
 
       hiddenHomeForNews.style.display = "none";
       hiddenProductsForNews.style.display = "none";
       hiddenLocationForNews.style.display = "none";
       hiddenGuestBookForNews.style.display = "none";
+      hiddenLoginForNews.style.display = "none";
 
       newsFunction();
 
@@ -77,12 +87,32 @@ const hideFunction = (visibleDivContent) => {
       let hiddenProductsForGuestBook = document.getElementById("Products");
       let hiddenNewsForGuestBook = document.getElementById("News");
       let hiddenLocationForGuestBook = document.getElementById("Location");
+      let hiddenLoginForGuestBook = document.getElementById("Login");
 
       hiddenHomeForGuestBook.style.display = "none";
       hiddenProductsForGuestBook.style.display = "none";
       hiddenLocationForGuestBook.style.display = "none";
       hiddenNewsForGuestBook.style.display = "none";
+      hiddenLoginForGuestBook.style.display = "none";
 
+      break;
+    
+    case "Login":
+      const visibleLoginDiv = document.getElementById("Login");
+      visibleLoginDiv.style.display = "block";
+  
+      let hiddenHomeForLogin = document.getElementById("Home");
+      let hiddenProductsForLogin = document.getElementById("Products");
+      let hiddenNewsForLogin= document.getElementById("News");
+      let hiddenLocationForLogin = document.getElementById("Location");
+      let hiddenGuestBookForLogin = document.getElementById("Guestbook")
+  
+      hiddenHomeForLogin.style.display = "none";
+      hiddenProductsForLogin.style.display = "none";
+      hiddenLocationForLogin.style.display = "none";
+      hiddenNewsForLogin.style.display = "none";
+      hiddenGuestBookForLogin.style.display = "none";
+  
       break;
   }
 };
@@ -189,6 +219,7 @@ function vcard() {
   const streamvCard = fetchvCardPromise.then((vCardData) => vCardData.text());
   streamvCard.then((vCardData) => {
     const splitvCardData = vCardData.split("\n");
+    console.log(splitvCardData);
 
     for (i in splitvCardData) {
       const vCard = splitvCardData[i].split(":");
@@ -198,10 +229,17 @@ function vcard() {
       } 
       
       else if (vCard[0].startsWith("EMAIL")){
+        document.getElementById("email").innerHTML = vCard[1];
+      }
 
+      else if (vCard[0].startsWith("ADR")){
+
+        const trimmedAddress = vCard[1].substring(2);
+        document.getElementById("address").innerHTML = trimmedAddress;
+        
       }
     }
-    console.log(vCardKeys);
+    
   });
 }
 
