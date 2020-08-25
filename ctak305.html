@@ -67,25 +67,25 @@
 
 <div class = "TabContent" id = "Guestbook" style = "display:none">
 
-    <div>
-        <form>
-            <label id = "comment">Your Comment:</label><br>
-            <input type="text" id="comment" name="comment"><br>
-            <label for="name">Name:</label><br>
-            <input type="text" id="name" name="name">
-            <input type="submit" value="Submit">
-        </form>
+    <div id = "postingComments">
+        
+            <span>Your Comment:</span><br>
+            <textarea type="text" id="comment"></textarea>
+            <span>Name:</span><br>
+            <input type="text" id="name"></input>
+            <button onclick = 'postComments()'> Submit your comment</button>
+        
     </div>
     
     <p>
-        <iframe class = "responsiveiframe" src= "http://redsox.uoa.auckland.ac.nz/ds/DairyService.svc/htmlcomments" title="Comments from our customers!">
+        <iframe class="responsiveiframe" id="commentsIframe" src="http://redsox.uoa.auckland.ac.nz/ds/DairyService.svc/htmlcomments" title="Comments from our customers!">
 
         </iframe>
    </p>
 </div>
 
-<footer id = "footer">
-    <p id = "footerPTag"></p>
+<footer id= "footer">
+    <p id= "footerPTag"></p>
 </footer>
  </html>
 
