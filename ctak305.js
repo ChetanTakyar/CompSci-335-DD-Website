@@ -2,8 +2,6 @@ websiteVersion();
 vcard();
 const hideFunction = (visibleDivContent) => {
   switch (visibleDivContent) {
-    
-
     case "Home":
       const visibleHomeDiv = document.getElementById("Home");
       visibleHomeDiv.style.display = "block";
@@ -12,13 +10,13 @@ const hideFunction = (visibleDivContent) => {
       let hiddenLocationForHome = document.getElementById("Location");
       let hiddenNewsForHome = document.getElementById("News");
       let hiddenGuestBookForHome = document.getElementById("Guestbook");
-      let hiddenLoginForHome = document.getElementById("Login")
+      let hiddenLoginForHome = document.getElementById("Login");
 
       hiddenProductsForHome.style.display = "none";
       hiddenLocationForHome.style.display = "none";
       hiddenNewsForHome.style.display = "none";
       hiddenGuestBookForHome.style.display = "none";
-      hiddenLoginForProducts.style.display = "none";
+      hiddenLoginForHome.style.display = "none";
 
       break;
 
@@ -96,23 +94,23 @@ const hideFunction = (visibleDivContent) => {
       hiddenLoginForGuestBook.style.display = "none";
 
       break;
-    
+
     case "Login":
       const visibleLoginDiv = document.getElementById("Login");
       visibleLoginDiv.style.display = "block";
-  
+
       let hiddenHomeForLogin = document.getElementById("Home");
       let hiddenProductsForLogin = document.getElementById("Products");
-      let hiddenNewsForLogin= document.getElementById("News");
+      let hiddenNewsForLogin = document.getElementById("News");
       let hiddenLocationForLogin = document.getElementById("Location");
-      let hiddenGuestBookForLogin = document.getElementById("Guestbook")
-  
+      let hiddenGuestBookForLogin = document.getElementById("Guestbook");
+
       hiddenHomeForLogin.style.display = "none";
       hiddenProductsForLogin.style.display = "none";
       hiddenLocationForLogin.style.display = "none";
       hiddenNewsForLogin.style.display = "none";
       hiddenGuestBookForLogin.style.display = "none";
-  
+
       break;
   }
 };
@@ -131,11 +129,11 @@ function productFunction() {
 
     productJSONData.forEach((product) => {
       ProductTableCells += `<tr> 
-                <td><img src = "http://redsox.uoa.auckland.ac.nz/ds/DairyService.svc/itemimg?id=${product.ItemId}" width = 50 height = 50></img></td>  
-                <td>${product.Title}</td> 
-                <td>${product.Price}</td>
-                <td>${product.Origin}</td>         
-                </tr>`;
+        <td><img src = "http://redsox.uoa.auckland.ac.nz/ds/DairyService.svc/itemimg?id=${product.ItemId}" width = 50 height = 50></img></td>  
+        <td>${product.Title}</td> 
+        <td>${product.Price}</td>
+        <td>${product.Origin}</td>         
+        </tr>`;
     });
 
     document.getElementById("ProductsTable").innerHTML = ProductTableCells;
@@ -158,11 +156,11 @@ function newsFunction() {
 
     newsJSONData.forEach((news) => {
       NewsTableCells += `<tr> 
-                <td> <img src = "${news.enclosureField.urlField}" width = 60 height = 60></img></td>
-                <td>${news.pubDateField}</td> 
-                <td><a href = ${news.linkField}>${news.titleField}</a></td> 
-                <td class="wrapText">${news.descriptionField}</td>
-                </tr>`;
+        <td> <img src = "${news.enclosureField.urlField}" width = 60 height = 60></img></td>
+        <td>${news.pubDateField}</td> 
+        <td><a href = ${news.linkField}>${news.titleField}</a></td> 
+        <td class="wrapText">${news.descriptionField}</td>
+        </tr>`;
     });
 
     document.getElementById("NewsTable").innerHTML = NewsTableCells;
@@ -226,20 +224,13 @@ function vcard() {
 
       if (vCard[0].startsWith("TEL")) {
         document.getElementById("phoneNumber").innerHTML = vCard[1];
-      } 
-      
-      else if (vCard[0].startsWith("EMAIL")){
+      } else if (vCard[0].startsWith("EMAIL")) {
         document.getElementById("email").innerHTML = vCard[1];
-      }
-
-      else if (vCard[0].startsWith("ADR")){
-
+      } else if (vCard[0].startsWith("ADR")) {
         const trimmedAddress = vCard[1].substring(2);
         document.getElementById("address").innerHTML = trimmedAddress;
-        
       }
     }
-    
   });
 }
 
@@ -262,5 +253,3 @@ function postComments() {
     iFrame.src = iFrame.src;
   });
 }
-
-
