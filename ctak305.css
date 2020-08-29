@@ -1,88 +1,118 @@
 .navigationBar {
-	background-color: rgb(75, 75, 75);
-	overflow: hidden;
+  background-color: rgb(75, 75, 75);
+  overflow: hidden;
 }
 
 .navButton {
-	background-color: rgb(75, 75, 75);
-	border: none;
-	color: white;
-	padding: 15px 32px;
-	text-align: center;
-	text-decoration: none;
-	display: inline-block;
-	font-size: 16px;
+  background-color: rgb(75, 75, 75);
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
 }
 
 .navigationBar button:hover {
-	background-color: rgb(92, 93, 95);
-	color: black;
+  background-color: rgb(92, 93, 95);
+  color: black;
 }
 
 .input {
-	display: inline-block;
+  display: inline-block;
 }
 
 .center {
-	display: block;
-	margin-left: auto;
-	margin-right: auto;
-	width: 50%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
 }
 
 table {
-	border: 1px solid black;
-	text-justify: right;
-	table-layout: fixed;
-	flex-wrap: wrap;
+  border: 1px solid black;
+  text-justify: right;
+  table-layout: fixed;
+  flex-wrap: wrap;
 }
 
 tr {
-	text-align: center;
+  text-align: center;
 }
 
 th.hide {
-	visibility: hidden;
+  visibility: hidden;
 }
 
 p.contactDetails {
-	text-align: center;
-	bottom: 20px;
+  text-align: center;
+  bottom: 20px;
 }
 
 td.wrapText {
-	word-break: break-all;
-	text-align: left;
+  word-break: break-all;
+  text-align: left;
 }
 
 iframe {
-	margin: 0;
-	padding: 0;
-	width: 40%;
-	height: 200px;
-	border: 3px solid black;
-	bottom: 0;
+  margin: 0;
+  padding: 0;
+  width: 40%;
+  height: 200px;
+  border: 3px solid black;
+  bottom: 0;
 }
 
 footer {
-	position: relative;
-	right: 0;
-	bottom: 0;
-	left: 0;
+  position: relative;
+  right: 0;
+  bottom: 0;
+  left: 0;
 
-	background-color: rgb(75, 75, 75);
+  background-color: rgb(75, 75, 75);
 }
 
 #footerPTag {
-	text-align: center;
-	color: white;
+  text-align: center;
+  color: white;
 }
 
 .flex-container-parent {
-	display: flex;
+  display: flex;
+  flex-flow: row wrap;
 }
 
 .child {
-	border: 4px;
-	border-color: black;
+  border: 4px;
+  border-color: black;
+}
+
+.card {
+  background-color: #f1f1f1;
+  padding: 20px;
+  margin-top: 20px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 45%;
+  box-shadow: 0 8px 12px 0 rgba(0, 0, 0, 0.2);
+  border-radius: 12px;
+}
+
+.column {
+  float: left;
+  width: 25%;
+  padding: 0 10px;
+}
+
+.row {
+  margin: 0 -5px;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
 }
