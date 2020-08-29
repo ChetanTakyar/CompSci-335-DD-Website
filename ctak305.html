@@ -1,105 +1,108 @@
-<!DOCTYPE html> 
-<html> 
+<!DOCTYPE html>
+<html>
 
 <head>
     <title>Dunedin Dairy</title>
     <link rel="stylesheet" type="text/css" href="ctak305.css">
-    <script defer = "true" src="ctak305.js"></script>
+    <script defer="true" src="ctak305.js"></script>
     <link rel="icon" href="http://redsox.uoa.auckland.ac.nz/ds/logo-192x192.png">
 </head>
 
-<div class="navigationBar" onload = "hideFunction('Home');">
-    
-    
-    <img style = "filter: invert(75%)" src="http://redsox.uoa.auckland.ac.nz/ds/logo-192x192.png"  height="80" width="80" alt="DD">
-    <button class = "navButton" id = "homeButton" onclick = "hideFunction('Home')">Home</button>
-    <button class = "navButton" id = "productsButton" onclick = "hideFunction('Products')">Products</button>
-    <button class = "navButton" id = "locationButton" onclick = "hideFunction('Location')">Location</button>
-    <button class = "navButton" id = "newsButton" onclick = "hideFunction('News')">News</button>
-    <button class = "navButton" id = "guestBookButton" onclick = "hideFunction('Guestbook')">Guestbook</button>
-    <button class = "navButton" id = "loginButton" onclick = "hideFunction('Login')">Login Page</button>
-   
-  </div>
+<div class="navigationBar" onload="hideFunction('Home');">
 
-<div class = "TabContent" id = "Home" style = "display:block">
+
+    <img style="filter: invert(75%)" src="http://redsox.uoa.auckland.ac.nz/ds/logo-192x192.png" height="80" width="80"
+        alt="DD">
+    <button class="navButton" id="homeButton" onclick="hideFunction('Home')">Home</button>
+    <button class="navButton" id="productsButton" onclick="hideFunction('Products')">Products</button>
+    <button class="navButton" id="locationButton" onclick="hideFunction('Location')">Location</button>
+    <button class="navButton" id="newsButton" onclick="hideFunction('News')">News</button>
+    <button class="navButton" id="guestBookButton" onclick="hideFunction('Guestbook')">Guestbook</button>
+    <button class="navButton" id="loginButton" onclick="hideFunction('Login')">Login Page</button>
+
+</div>
+
+<div class="TabContent" id="Home" style="display:block">
     <p style="text-align:center;">
-        Do you want fresh milk and cheese?? Of course you do! 
-        <br>  
+        Do you want fresh milk and cheese?? Of course you do!
+        <br>
         Browse through the finest collection of dairy products from Dunedin Dairy today!
     </p>
     <br>
-    <img class = "center" src="https://freesvg.org/img/Cartoon-Cow.png"  alt = "Cow">
-    
-    
+    <img class="center" src="https://freesvg.org/img/Cartoon-Cow.png" alt="Cow">
+
+
 </div>
 
-<div class = "TabContent" id = "Products" style = "display:none">
-  
+<div class="TabContent" id="Products" style="display:none">
+
     <input type="text" id="searchItem" oninput="searchFunction()" placeholder="Search for products..">
-    
-    <table id = "ProductsTable"></table>
-    
-    
+
+    <table id="ProductsTable"></table>
+
+
 </div>
 
 
-<div class = "TabContent" id = "Location" style = "display:none">
+<div class="TabContent" id="Location" style="display:none">
     <p>
-        Phone:<a id = "phoneNumber" href="tel:"></a>
+        Phone:<a id="phoneNumber" href="tel:"></a>
     </p>
 
     <p>
-        Email:<a id="email" href = "mailto:"></a>
+        Email:<a id="email" href="mailto:"></a>
     </p>
 
-    <p class = "center">The map to find us:</p>
+    <p class="center">The map to find us:</p>
     <br>
-    <img class = "center" src="http://redsox.uoa.auckland.ac.nz/ds/map.png"  width = "400" height = "300" alt = "Location Map"> 
-    
+    <img class="center" src="http://redsox.uoa.auckland.ac.nz/ds/map.png" width="400" height="300" alt="Location Map">
+
     <p>
         Address:<a id="address"></a>
     </p>
 </div>
 
 
-<div class = "TabContent" id = "News" style = "display:none">
-   <br>
-   <br>
-    <table id = "NewsTable"> </table>
+<div class="TabContent" id="News" style="display:none">
+    <br>
+    <br>
+    <div class="flex-container-parent">
+        <div class="child"> </div>
+    </div>
 </div>
 
+<div class="TabContent" id="Guestbook" style="display:none">
 
-<div class = "TabContent" id = "Guestbook" style = "display:none">
+    <div id="postingComments">
 
-    <div id = "postingComments">
-        
-            <span>Name:</span><br>
-            <input type="text" id="name"></input>
-            <br>
-            <span>Your Comment:</span><br>
-            <textarea type="text" id="comment"></textarea>
-            
-            
-            <button onclick = 'postComments()'> Submit your comment</button>
-        
+        <span>Name:</span><br>
+        <input type="text" id="name"></input>
+        <br>
+        <span>Your Comment:</span><br>
+        <textarea type="text" id="comment"></textarea>
+
+<button onclick='postComments()'> Submit your comment</button>
+
     </div>
-    
+
     <p>
-        <iframe class="responsiveiframe" id="commentsIframe" src="http://redsox.uoa.auckland.ac.nz/ds/DairyService.svc/htmlcomments" title="Comments from our customers!">
+        <iframe class="responsiveiframe" id="commentsIframe"
+            src="http://redsox.uoa.auckland.ac.nz/ds/DairyService.svc/htmlcomments"
+            title="Comments from our customers!">
 
         </iframe>
-   </p>
+    </p>
 </div>
 
-<div class = "TabContent" id = "Login" style = "display:none">
+<div class="TabContent" id="Login" style="display:none">
     <p>
         Hi
     </p>
-    
-     
- </div>
-<footer id= "footer">
-    <p id= "footerPTag"></p>
-</footer>
- </html>
 
+
+</div>
+<footer id="footer">
+    <p id="footerPTag"></p>
+</footer>
+
+</html>
