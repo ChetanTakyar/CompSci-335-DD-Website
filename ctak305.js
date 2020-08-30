@@ -128,15 +128,14 @@ function productFunction() {
     let productGrid = "";
 
     productJSONData.forEach((product) => {
-      productGrid += `<div class="column">
-          <div class="card">
-            <img src = "http://redsox.uoa.auckland.ac.nz/ds/DairyService.svc/itemimg?id=${product.ItemId}" width = "50" height = "50"> </img>
+      productGrid += `
+          <div class="productCard">
+            <img src = "http://redsox.uoa.auckland.ac.nz/ds/DairyService.svc/itemimg?id=${product.ItemId}" width = "80" height = "80"> </img>
             <h3>${product.Title}</h3>
             <p>${product.Origin}</p>
-            <p>${product.Price}</p>
-            <p>Buy Now</p>
+            <p>$${product.Price}</p>
+            <button>Buy Now</button>
           </div>
-        </div>
         `
     });
 
@@ -159,9 +158,10 @@ function newsFunction() {
     let newsCards = "";
     newsJSONData.forEach((news) => {
       newsCards += `<div class="card">
+        <img  class="center"  src="${news.enclosureField.urlField}"></img>
         <h2><a href=${news.linkField}> ${news.titleField}</a></h2>
         <h5>${news.pubDateField}</h5>
-        <img  class="center"  src="${news.enclosureField.urlField}"></img>
+        
         <p>${news.descriptionField}</p>
       </div>
       `;
@@ -185,15 +185,15 @@ function searchFunction() {
     let productGrid = "";
 
     productJSONData.forEach((product) => {
-        productGrid += `<div class="column">
-            <div class="card">
-              <img src = "http://redsox.uoa.auckland.ac.nz/ds/DairyService.svc/itemimg?id=${product.ItemId}" width = "50" height = "50"> </img>
+        productGrid += `
+            <div class="productCard">
+              <img src = "http://redsox.uoa.auckland.ac.nz/ds/DairyService.svc/itemimg?id=${product.ItemId}" width = "80" height = "80"> </img>
               <h3>${product.Title}</h3>
               <p>${product.Origin}</p>
-              <p>${product.Price}</p>
-              <p>Buy Now</p>
+              <p>$${product.Price}</p>
+              <button>Buy Now</button>
             </div>
-          </div>
+          
           `
       });
   
