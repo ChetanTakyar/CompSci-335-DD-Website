@@ -130,13 +130,13 @@ function productFunction() {
     productJSONData.forEach((product) => {
       productGrid += `
           <div class="productCard">
-            <img src = "http://redsox.uoa.auckland.ac.nz/ds/DairyService.svc/itemimg?id=${product.ItemId}" width = "80" height = "80"> </img>
+            <img src = "http://redsox.uoa.auckland.ac.nz/ds/DairyService.svc/itemimg?id=${product.ItemId}" width = "80" height = "100"> </img>
             <h3>${product.Title}</h3>
             <p>${product.Origin}</p>
             <p>$${product.Price}</p>
             <button>Buy Now</button>
           </div>
-        `
+        `;
     });
 
     document.getElementById("productsGridLayout").innerHTML = productGrid;
@@ -185,19 +185,19 @@ function searchFunction() {
     let productGrid = "";
 
     productJSONData.forEach((product) => {
-        productGrid += `
+      productGrid += `
             <div class="productCard">
-              <img src = "http://redsox.uoa.auckland.ac.nz/ds/DairyService.svc/itemimg?id=${product.ItemId}" width = "80" height = "80"> </img>
+              <img src = "http://redsox.uoa.auckland.ac.nz/ds/DairyService.svc/itemimg?id=${product.ItemId}" width = "80" height = "100"> </img>
               <h3>${product.Title}</h3>
               <p>${product.Origin}</p>
               <p>$${product.Price}</p>
               <button>Buy Now</button>
             </div>
           
-          `
-      });
-  
-      document.getElementById("productsGridLayout").innerHTML = productGrid;
+          `;
+    });
+
+    document.getElementById("productsGridLayout").innerHTML = productGrid;
   });
 }
 
