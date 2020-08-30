@@ -130,7 +130,7 @@ function productFunction() {
     productJSONData.forEach((product) => {
       productGrid += `
           <div class="productCard">
-            <img src = "http://redsox.uoa.auckland.ac.nz/ds/DairyService.svc/itemimg?id=${product.ItemId}" width = "80" height = "100"> </img>
+            <img src = "http://redsox.uoa.auckland.ac.nz/ds/DairyService.svc/itemimg?id=${product.ItemId}" width = "100" height = "160"> </img>
             <h3>${product.Title}</h3>
             <p>${product.Origin}</p>
             <p>$${product.Price}</p>
@@ -142,6 +142,38 @@ function productFunction() {
     document.getElementById("productsGridLayout").innerHTML = productGrid;
   });
 }
+
+function searchFunction() {
+  const input = document.getElementById("searchItem").value;
+  const producturl =
+    "http://redsox.uoa.auckland.ac.nz/ds/DairyService.svc/search?term=" + input;
+  const fetchPromise = fetch(producturl, {
+    headers: {
+      Accept: "application/json",
+    },
+  });
+  const streamPromise = fetchPromise.then((response) => response.json());
+  streamPromise.then((productJSONData) => {
+    let productGrid = "";
+
+    productJSONData.forEach((product) => {
+      productGrid += `
+            <div class="productCard">
+              <img src = "http://redsox.uoa.auckland.ac.nz/ds/DairyService.svc/itemimg?id=${product.ItemId}" width = "100" height = "160"> </img>
+              <h3>${product.Title}</h3>
+              <p>${product.Origin}</p>
+              <p>$${product.Price}</p>
+              <button>Buy Now</button>
+            </div>
+          
+          `;
+    });
+
+    document.getElementById("productsGridLayout").innerHTML = productGrid;
+  });
+}
+
+function buyFunction() {}
 
 function newsFunction() {
   const NewsURL = "http://redsox.uoa.auckland.ac.nz/ds/DairyService.svc/news";
@@ -171,50 +203,6 @@ function newsFunction() {
   });
 }
 
-function searchFunction() {
-  const input = document.getElementById("searchItem").value;
-  const producturl =
-    "http://redsox.uoa.auckland.ac.nz/ds/DairyService.svc/search?term=" + input;
-  const fetchPromise = fetch(producturl, {
-    headers: {
-      Accept: "application/json",
-    },
-  });
-  const streamPromise = fetchPromise.then((response) => response.json());
-  streamPromise.then((productJSONData) => {
-    let productGrid = "";
-
-    productJSONData.forEach((product) => {
-      productGrid += `
-            <div class="productCard">
-              <img src = "http://redsox.uoa.auckland.ac.nz/ds/DairyService.svc/itemimg?id=${product.ItemId}" width = "80" height = "100"> </img>
-              <h3>${product.Title}</h3>
-              <p>${product.Origin}</p>
-              <p>$${product.Price}</p>
-              <button>Buy Now</button>
-            </div>
-          
-          `;
-    });
-
-    document.getElementById("productsGridLayout").innerHTML = productGrid;
-  });
-}
-
-function websiteVersion() {
-  const versionURL =
-    "http://redsox.uoa.auckland.ac.nz/ds/DairyService.svc/version";
-
-  const fetchPromise = fetch(versionURL);
-  const streamPromise = fetchPromise.then((response) => response.text());
-
-  streamPromise.then(
-    (versionText) =>
-      (document.getElementById("footerPTag").innerHTML =
-        "Version:" + versionText)
-  );
-}
-
 function vcard() {
   const vcardURL = "http://redsox.uoa.auckland.ac.nz/ds/DairyService.svc/vcard";
   const fetchvCardPromise = fetch(vcardURL, {
@@ -240,6 +228,20 @@ function vcard() {
       }
     }
   });
+}
+
+function websiteVersion() {
+  const versionURL =
+    "http://redsox.uoa.auckland.ac.nz/ds/DairyService.svc/version";
+
+  const fetchPromise = fetch(versionURL);
+  const streamPromise = fetchPromise.then((response) => response.text());
+
+  streamPromise.then(
+    (versionText) =>
+      (document.getElementById("footerPTag").innerHTML =
+        "Version:" + versionText)
+  );
 }
 
 function postComments() {
