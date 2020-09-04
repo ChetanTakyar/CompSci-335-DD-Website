@@ -156,7 +156,6 @@ function searchFunction() {
 	const streamPromise = fetchPromise.then((response) => response.json());
 	streamPromise.then((productJSONData) => {
 		let productGrid = "";
-
 		productJSONData.forEach((product) => {
 			productGrid += `
             <div class="productCard">
@@ -211,6 +210,7 @@ function vcard() {
 	});
 	const streamvCard = fetchvCardPromise.then((vCardData) => vCardData.text());
 	streamvCard.then((vCardData) => {
+		
 		const splitvCardData = vCardData.split("\n");
 
 		for (i in splitvCardData) {
@@ -251,7 +251,8 @@ function postComments() {
 function websiteVersion() {
 	const versionURL =
 		"http://redsox.uoa.auckland.ac.nz/ds/DairyService.svc/version";
-
+	
+	const 
 	const fetchPromise = fetch(versionURL);
 	const streamPromise = fetchPromise.then((response) => response.text());
 
@@ -260,4 +261,19 @@ function websiteVersion() {
 			(document.getElementById("footerPTag").innerHTML =
 				"Version:" + versionText)
 	);
+}
+
+function login (){
+	const registerURL = "http://redsox.uoa.auckland.ac.nz/ds/DairyService.svc/register"
+
+	const user = document.getElementById("loginUser");
+	const password = document.getElementById("password")
+	
+	const fetchRegisterPromise = fetch(registerURL, {
+		method: "POST",
+		body: JSON.stringify(user, password),
+		headers: {
+			"Content-Type": "application/json",
+		},
+	});
 }
