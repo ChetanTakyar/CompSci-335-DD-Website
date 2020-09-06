@@ -81,7 +81,7 @@
         <span>Your Comment:</span><br>
         <textarea type="text" id="comment"></textarea>
 
-<button onclick='postComments()'> Submit your comment</button>
+<button onclick='postComments();clearTextArea();'> Submit your comment</button>
 
     </div>
 
@@ -101,10 +101,30 @@
         
         <input class="center" type="text" id="password" placeholder="Password"></input>
         <br>
-        <button class="center LoginInFormButtons">Sign in</button>
+        <button class="center LoginInFormButtons" onclick="login()">Sign in</button>
         <p class="center">Don't have an account?</p>
         
-        <button class="center LoginInFormButtons">Register Now</button>
+        <button class="center LoginInFormButtons" id="registrationButton" onclick="registrationModal()">Register Now</button>
+
+    </div>
+    
+
+    <!-- The Modal -->
+    <div id="registrationModal" class="modal">
+
+    <!-- Modal content -->
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <p class="center">Please fill in your details:</p>
+            <input class="center" type="text" id="address" placeholder="Your Address"></input>
+            <br>
+            
+            <input class="center" type="text" id="newUser" placeholder="Password"></input>
+            <br>
+            <input class="center" type="text" id="newRegistrationPassword" placeholder="Password"></input>
+            <br>
+            <button class="center LoginInFormButtons">Complete Registration</button>
+        </div>
 
     </div>
 

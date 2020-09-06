@@ -111,6 +111,7 @@ const hideFunction = (visibleDivContent) => {
 			hiddenNewsForLogin.style.display = "none";
 			hiddenGuestBookForLogin.style.display = "none";
 
+			window.onload = registrationModal();
 			break;
 	}
 };
@@ -252,7 +253,7 @@ function websiteVersion() {
 	const versionURL =
 		"http://redsox.uoa.auckland.ac.nz/ds/DairyService.svc/version";
 	
-	const 
+	
 	const fetchPromise = fetch(versionURL);
 	const streamPromise = fetchPromise.then((response) => response.text());
 
@@ -263,17 +264,59 @@ function websiteVersion() {
 	);
 }
 
-function login (){
+function clearTextArea(){
+	document.getElementById("name").value = "";
+	document.getElementById("comment").value = "";
+}
+
+
+function login(){
+	
+	const xhr = new XMLHttpRequest();
+	const uri = "http://redsox.uoa.auckland.ac.nz/dsa/Service.svc/user";
+	
+	const username = document.getElementById("loginUser");
+	const password = document.getElementById("password");
+	xhr.open("GET", uri, true, username, password);
+	xhr.withCredentials = true;
+	xhr.send(null);
+}
+
+
+
+
+function registration (){
 	const registerURL = "http://redsox.uoa.auckland.ac.nz/ds/DairyService.svc/register"
 
+	const address = document.getElementById("address");
 	const user = document.getElementById("loginUser");
-	const password = document.getElementById("password")
+	const password = document.getElementById("password");
 	
 	const fetchRegisterPromise = fetch(registerURL, {
 		method: "POST",
-		body: JSON.stringify(user, password),
+		body: JSON.stringify(address, user, password),
 		headers: {
 			"Content-Type": "application/json",
 		},
 	});
 }
+
+function registrationModal(){
+	let modal = document.getElementById("registrationModal");
+	let registrationButton = document.getElementById("registrationButton");
+	let closeButton = document.getElementsByClassName("close")[0];
+	
+	registrationButton.onclick = function() {
+    modal.style.display = "block";
+	}
+	closeButton.onclick = function() {
+  	modal.style.display = "none";
+	}
+
+	window.onclick = function(event) {
+  	if (event.target == modal) {
+    	modal.style.display = "none";
+  		}
+	}
+}
+
