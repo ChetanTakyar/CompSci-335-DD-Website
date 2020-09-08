@@ -1,3 +1,5 @@
+
+
 websiteVersion();
 vcard();
 const hideFunction = (visibleDivContent) => {
@@ -111,7 +113,7 @@ const hideFunction = (visibleDivContent) => {
 			hiddenNewsForLogin.style.display = "none";
 			hiddenGuestBookForLogin.style.display = "none";
 
-			window.onload = registrationModal();
+			
 			break;
 	}
 };
@@ -269,54 +271,61 @@ function clearTextArea(){
 	document.getElementById("comment").value = "";
 }
 
+function registration (){
+	const registerURL = "http://redsox.uoa.auckland.ac.nz/ds/DairyService.svc/register"
+
+	const address = document.getElementById("UserAddress").value;
+	const user = document.getElementById("newUser").value;
+	const password = document.getElementById("newRegistrationPassword").value;
+	
+	const fetchRegisterPromise = fetch(registerURL, {
+		method: "POST",
+		body: JSON.stringify({Address:address, Name:user, Password:password}),
+		headers: {
+			"Content-Type": "application/json",
+		},
+	});
+
+	const streamRegistrationPromise = fetchRegisterPromise.then((response) =>(response.json()));
+	streamRegistrationPromise.then(
+		(d) =>{alert(d);}
+	);
+
+}
+
+
+function showRegistrationModal(){
+	let modal = document.getElementById("registrationModal");
+	modal.style.display = "block";
+}
+
+function hideRegistrationModal(){
+	let modal = document.getElementById("registrationModal");
+	modal.style.display = "none";
+}
 
 function login(){
 	
 	const xhr = new XMLHttpRequest();
 	const uri = "http://redsox.uoa.auckland.ac.nz/dsa/Service.svc/user";
+
 	
-	const username = document.getElementById("loginUser");
-	const password = document.getElementById("password");
+	const username = document.getElementById("loginUser").value;
+	const password = document.getElementById("password").value;
 	xhr.open("GET", uri, true, username, password);
 	xhr.withCredentials = true;
+	xhr.onload =()=>{
+		if(xhr.status==200){
+			alert("Successful login");
+		}
+		else{
+			alert("Invalid Login");
+		}
+	};
 	xhr.send(null);
 }
 
 
 
 
-function registration (){
-	const registerURL = "http://redsox.uoa.auckland.ac.nz/ds/DairyService.svc/register"
-
-	const address = document.getElementById("address");
-	const user = document.getElementById("loginUser");
-	const password = document.getElementById("password");
-	
-	const fetchRegisterPromise = fetch(registerURL, {
-		method: "POST",
-		body: JSON.stringify(address, user, password),
-		headers: {
-			"Content-Type": "application/json",
-		},
-	});
-}
-
-function registrationModal(){
-	let modal = document.getElementById("registrationModal");
-	let registrationButton = document.getElementById("registrationButton");
-	let closeButton = document.getElementsByClassName("close")[0];
-	
-	registrationButton.onclick = function() {
-    modal.style.display = "block";
-	}
-	closeButton.onclick = function() {
-  	modal.style.display = "none";
-	}
-
-	window.onclick = function(event) {
-  	if (event.target == modal) {
-    	modal.style.display = "none";
-  		}
-	}
-}
 

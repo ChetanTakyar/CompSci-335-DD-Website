@@ -102,10 +102,10 @@
         
         <input class="center" type="text" id="password" placeholder="Password"></input>
         <br>
-        <button class="center LoginInFormButtons" onclick="login()">Sign in</button>
+        <button class="center LoginInFormButtons"  id = "loginButton" onclick="login()">Sign in</button>
         <p class="center">Don't have an account?</p>
         
-        <button class="center LoginInFormButtons" id="registrationButton" onclick="registrationModal()">Register Now</button>
+        <button class="center LoginInFormButtons" id="registrationButton" onclick="showRegistrationModal()">Register Now</button>
 
     </div>
     
@@ -115,16 +115,16 @@
 
     <!-- Modal content -->
         <div class="modal-content">
-            <span class="close">&times;</span>
+            <span class="close" onclick="hideRegistrationModal()">&times;</span>
             <p class="center">Please fill in your details:</p>
-            <input class="center" type="text" id="address" placeholder="Your Address"></input>
+            <input class="center" type="text" id="UserAddress" placeholder="Your Address"></input>
             <br>
             
             <input class="center" id="newUser" placeholder="Your Username"></input>
             <br>
             <input class="center" id="newRegistrationPassword" placeholder="Your Password"></input>
             <br>
-            <button class="center LoginInFormButtons">Complete Registration</button>
+            <button class="center LoginInFormButtons" onclick="registration()">Complete Registration</button>
         </div>
 
     </div>
