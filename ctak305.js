@@ -307,7 +307,7 @@ function hideRegistrationModal(){
 function login(){
 	
 	const xhr = new XMLHttpRequest();
-	const uri = "http://redsox.uoa.auckland.ac.nz/dsa/Service.svc/user";
+	const uri = "http://localhost:8189/Service.svc/user";
 
 	
 	const username = document.getElementById("loginUser").value;
