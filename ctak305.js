@@ -1,7 +1,17 @@
+let user = {
+	name: null,
+	password: null,
+};
 
+if (user.name == null && user.password == null) {
+	let notLoggedIn = document.getElementById("notLoggedIn");
+	loggedIn = document.getElementById("loggedIn");
+	notLoggedIn.style.display = "inline-block";
 
-websiteVersion();
-vcard();
+	loggedIn.style.display = "none";
+}
+
+window.onload = websiteVersion();
 const hideFunction = (visibleDivContent) => {
 	switch (visibleDivContent) {
 		case "Home":
@@ -57,6 +67,9 @@ const hideFunction = (visibleDivContent) => {
 			hiddenNewsForLocation.style.display = "none";
 			hiddenGuestBookForLocation.style.display = "none";
 			hiddenLoginForLocation.style.display = "none";
+
+			vcard();
+
 			break;
 
 		case "News":
@@ -113,14 +126,12 @@ const hideFunction = (visibleDivContent) => {
 			hiddenNewsForLogin.style.display = "none";
 			hiddenGuestBookForLogin.style.display = "none";
 
-			
 			break;
 	}
 };
 
 function productFunction() {
-	const producturl =
-		"http://redsox.uoa.auckland.ac.nz/ds/DairyService.svc/items";
+	const producturl = "http://localhost:8188/DairyService.svc/items";
 	const fetchPromise = fetch(producturl, {
 		headers: {
 			Accept: "application/json",
@@ -133,11 +144,11 @@ function productFunction() {
 		productJSONData.forEach((product) => {
 			productGrid += `
           <div class="productCard">
-            <img src="http://redsox.uoa.auckland.ac.nz/ds/DairyService.svc/itemimg?id=${product.ItemId}" width = "100" height = "160"> </img>
+            <img id="productImage"src="http://localhost:8188/DairyService.svc/itemimg?id=${product.ItemId}"> </img>
             <h3>${product.Title}</h3>
             <p>${product.Origin}</p>
             <p>$${product.Price}</p>
-            <a href="http://redsox.uoa.auckland.ac.nz/dsa/Service.svc/buy?id=${product.ItemId}"><button>Buy Now</button></a>
+           <button class="productBuyButton center" onclick=buyFunction(${product.ItemId})>Buy Now</button>
           </div>
         `;
 		});
@@ -149,7 +160,7 @@ function productFunction() {
 function searchFunction() {
 	const input = document.getElementById("searchItem").value;
 	const producturl =
-		"http://redsox.uoa.auckland.ac.nz/ds/DairyService.svc/search?term=" + input;
+		"http://localhost:8188/DairyService.svc/search?term=" + input;
 	const fetchPromise = fetch(producturl, {
 		headers: {
 			Accept: "application/json",
@@ -162,11 +173,11 @@ function searchFunction() {
 		productJSONData.forEach((product) => {
 			productGrid += `
             <div class="productCard">
-              <img src = "http://redsox.uoa.auckland.ac.nz/ds/DairyService.svc/itemimg?id=${product.ItemId}" width = "100" height = "160"> </img>
+              <img class"center" src = "http://localhost:8188/DairyService.svc/itemimg?id=${product.ItemId}" width = "100" height = "160"> </img>
               <h3>${product.Title}</h3>
               <p>${product.Origin}</p>
               <p>$${product.Price}</p>
-              <a href="http://redsox.uoa.auckland.ac.nz/dsa/Service.svc/buy?id=${product.ItemId}"><button>Buy Now</button></a>
+              <button class="productBuyButton center" onclick="buyFunction(${product.ItemId})">Buy Now</button>
             </div>
           
           `;
@@ -177,7 +188,7 @@ function searchFunction() {
 }
 
 function newsFunction() {
-	const NewsURL = "http://redsox.uoa.auckland.ac.nz/ds/DairyService.svc/news";
+	const NewsURL = "http://localhost:8188/DairyService.svc/news";
 
 	const fetchNewsPromise = fetch(NewsURL, {
 		headers: {
@@ -205,7 +216,7 @@ function newsFunction() {
 }
 
 function vcard() {
-	const vcardURL = "http://redsox.uoa.auckland.ac.nz/ds/DairyService.svc/vcard";
+	const vcardURL = "http://localhost:8188/DairyService.svc/vcard";
 	const fetchvCardPromise = fetch(vcardURL, {
 		headers: {
 			Accept: "application/json",
@@ -213,7 +224,6 @@ function vcard() {
 	});
 	const streamvCard = fetchvCardPromise.then((vCardData) => vCardData.text());
 	streamvCard.then((vCardData) => {
-		
 		const splitvCardData = vCardData.split("\n");
 
 		for (i in splitvCardData) {
@@ -251,11 +261,151 @@ function postComments() {
 	});
 }
 
+function clearCommentsTextArea() {
+	document.getElementById("name").value = "";
+	document.getElementById("comment").value = "";
+}
+
+function clearLoginAreaTextArea() {
+	document.getElementById("userLogin").value = null;
+	document.getElementById("password").value = null;
+}
+
+function showRegistrationModal() {
+	let modal = document.getElementById("registrationModal");
+	modal.style.display = "block";
+}
+
+function hideRegistrationModal() {
+	let modal = document.getElementById("registrationModal");
+	modal.style.display = "none";
+}
+
+function showProductMessage() {
+	let modal = document.getElementById("buyMessage");
+	modal.style.display = "block";
+}
+
+function hideProductMessage() {
+	let modal = document.getElementById("buyMessage");
+	modal.style.display = "none";
+}
+
+function showLoginMessage() {
+	let modal = document.getElementById("loginSuccessMessage");
+	modal.style.display = "block";
+}
+
+function hideLoginMessage() {
+	let modal = document.getElementById("loginSuccessMessage");
+	modal.style.display = "none";
+}
+
+//Login message modal visibility
+function showFailLoginMessage() {
+	let modal = document.getElementById("loginFailMessage");
+	modal.style.display = "block";
+}
+//Login message modal visibility
+function hideFailLoginMessage() {
+	let modal = document.getElementById("loginFailMessage");
+	modal.style.display = "none";
+}
+function registration() {
+	const registerURL = "http://localhost:8188/DairyService.svc/register";
+
+	const address = document.getElementById("UserAddress").value;
+	const user = document.getElementById("newUser").value;
+	const password = document.getElementById("newRegistrationPassword").value;
+
+	const fetchRegisterPromise = fetch(registerURL, {
+		method: "POST",
+		body: JSON.stringify({ Address: address, Name: user, Password: password }),
+		headers: {
+			"Content-Type": "application/json",
+		},
+	});
+
+	const streamRegistrationPromise = fetchRegisterPromise.then((response) =>
+		response.json()
+	);
+	streamRegistrationPromise.then((responseMessage) => {
+		const messageText = responseMessage;
+		alert(messageText);
+	});
+}
+function login() {
+	const xhr = new XMLHttpRequest();
+	const uri = "http://localhost:8189/Service.svc/user";
+
+	let username = document.getElementById("userLogin").value;
+	let password = document.getElementById("password").value;
+
+	xhr.open("GET", uri, true, username, password);
+
+	xhr.withCredentials = true;
+	xhr.onload = () => {
+		if (xhr.status == 200) {
+			document.getElementById("loginText").innerHTML = "Login was successful!";
+			user.name = username;
+			user.password = password;
+			clearLoginAreaTextArea();
+			showLoginMessage();
+			let hideNotLoggedIn = document.getElementById("notLoggedIn");
+			let showLoggedIn = document.getElementById("loggedIn");
+			hideNotLoggedIn.style.display = "none";
+			showLoggedIn.style.display = "inline-block";
+		} else {
+			document.getElementById("loginFailText").innerHTML =
+				"Username or password was incorrect";
+			clearLoginAreaTextArea();
+			showFailLoginMessage();
+		}
+	};
+	xhr.send(null);
+}
+
+function logout() {
+	user.name = null;
+	user.password = null;
+
+	if (user.name == null && user.password == null) {
+		let notLoggedIn = document.getElementById("notLoggedIn");
+		loggedIn = document.getElementById("loggedIn");
+		notLoggedIn.style.display = "inline-block";
+
+		loggedIn.style.display = "none";
+	}
+
+	window.location.reload();
+	return false;
+}
+
+function buyFunction(productId) {
+	const xhr = new XMLHttpRequest();
+	const uri = "http://localhost:8189/Service.svc/buy?id=" + productId;
+	xhr.withCredentials = true;
+	if (user.name == null && user.password == null) {
+		hideFunction("Login");
+	} else {
+		xhr.open("GET", uri, true, user.name, user.password);
+		xhr.setRequestHeader("Accept", "application/json");
+
+		xhr.onload = () => {
+			if (xhr.status == 200) {
+				let buyText = xhr.responseText;
+				document.getElementById("buyText").innerHTML = buyText;
+				showProductMessage();
+			}
+		};
+	}
+	xhr.send(null);
+}
+
 function websiteVersion() {
 	const versionURL =
 		"http://redsox.uoa.auckland.ac.nz/ds/DairyService.svc/version";
-	
-	
+
 	const fetchPromise = fetch(versionURL);
 	const streamPromise = fetchPromise.then((response) => response.text());
 
@@ -265,67 +415,3 @@ function websiteVersion() {
 				"Version:" + versionText)
 	);
 }
-
-function clearTextArea(){
-	document.getElementById("name").value = "";
-	document.getElementById("comment").value = "";
-}
-
-function registration (){
-	const registerURL = "http://redsox.uoa.auckland.ac.nz/ds/DairyService.svc/register"
-
-	const address = document.getElementById("UserAddress").value;
-	const user = document.getElementById("newUser").value;
-	const password = document.getElementById("newRegistrationPassword").value;
-	
-	const fetchRegisterPromise = fetch(registerURL, {
-		method: "POST",
-		body: JSON.stringify({Address:address, Name:user, Password:password}),
-		headers: {
-			"Content-Type": "application/json",
-		},
-	});
-
-	const streamRegistrationPromise = fetchRegisterPromise.then((response) =>(response.json()));
-	streamRegistrationPromise.then(
-		(d) =>{alert(d);}
-	);
-
-}
-
-
-function showRegistrationModal(){
-	let modal = document.getElementById("registrationModal");
-	modal.style.display = "block";
-}
-
-function hideRegistrationModal(){
-	let modal = document.getElementById("registrationModal");
-	modal.style.display = "none";
-}
-
-function login(){
-	
-	const xhr = new XMLHttpRequest();
-	const uri = "http://redsox.uoa.auckland.ac.nz/dsa/Service.svc/user";
-
-	
-	const username = document.getElementById("loginUser").value;
-	const password = document.getElementById("password").value;
-	xhr.open("GET", uri, true, username, password);
-	xhr.withCredentials = true;
-	xhr.onload =()=>{
-		if(xhr.status==200){
-			alert("Successful login");
-		}
-		else{
-			alert("Invalid Login");
-		}
-	};
-	xhr.send(null);
-}
-
-
-
-
-

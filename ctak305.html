@@ -20,10 +20,13 @@
     <button class="navButton" id="newsButton" onclick="hideFunction('News')">News</button>
     <button class="navButton" id="guestBookButton" onclick="hideFunction('Guestbook')">Guestbook</button>
     <button class="navButton" id="loginButton" onclick="hideFunction('Login')">Login Page</button>
+    <span id="loggedIn">You are logged in <button onclick="logout()">logout</button></span>
+    <span id="notLoggedIn">You are not logged in</span>
 
-</div>
+</div>   
 
 <div class="TabContent" id="Home" style="display:block">
+    
     <p style="text-align:center;">
         Do you want fresh milk and cheese?? Of course you do!
         <br>
@@ -36,31 +39,33 @@
 </div>
 
 <div class="TabContent" id="Products" style="display:none">
+  
     <br>
     <input class="center" id="searchItem" oninput="searchFunction()" placeholder="Search for products...">
+    <br>
+    <div class ="Grid" id="productsGridLayout"></div>
+    
+      <!-- The Modal -->
+      <div id="buyMessage" class="modal">
 
+        <!-- Modal content -->
+            <div class="modal-message-content">
+                <span class="close" onclick="hideProductMessage()">&times;</span>
+                <div id="buyText"></div>
+            </div>
     
-        <div class ="Grid" id="productsGridLayout"></div>
-    
+        </div>
 
 </div>
 
 
 <div class="TabContent" id="Location" style="display:none">
-    <p>
-        Phone:<a id="phoneNumber" href="tel:"></a>
-    </p>
-
-    <p>
-        Email:<a id="email" href="mailto:"></a>
-    </p>
-
+    
     <p class="center">The map to find us:</p>
     <br>
-    <img class="center" src="http://redsox.uoa.auckland.ac.nz/ds/map.png" width="400" height="300" alt="Location Map">
-
-    <p>
-        Address:<a id="address"></a>
+    <img class="center" src="http://redsox.uoa.auckland.ac.nz/ds/map.png" alt="Location Map">
+    <p class="center">
+        Phone:<a id="phoneNumber" href="tel:"></a> | Email:<a id="email" href="mailto:"></a>|Address:<a href="address" id="address"></a>
     </p>
 </div>
 
@@ -68,7 +73,6 @@
 <div class="TabContent" id="News" style="display:none">
     <br>
     <br>
-    
     <div id = "newsBlog"> </div>
 </div>
 
@@ -82,7 +86,7 @@
         <span>Your Comment:</span><br>
         <textarea type="text" id="comment"></textarea>
 
-<button onclick='postComments();clearTextArea();'> Submit your comment</button>
+<button onclick='postComments();clearCommentsTextArea();'> Submit your comment</button>
 
     </div>
 
@@ -96,8 +100,11 @@
 </div>
 
 <div class="TabContent" id="Login" style="display:none">
+    <div id="loginStatus">
+        
+    </div>
     <div class="loginBox">
-        <input class="center" type="text" id="loginUser" placeholder="Username"></input>
+        <input class="center" type="text" id="userLogin" placeholder="Username"></input>
         <br>
         
         <input class="center" type="text" id="password" placeholder="Password"></input>
@@ -108,6 +115,28 @@
         <button class="center LoginInFormButtons" id="registrationButton" onclick="showRegistrationModal()">Register Now</button>
 
     </div>
+
+    <div id="loginSuccessMessage" class="modal">
+
+        <!-- Modal content -->
+            <div class="modal-success-content">
+                <span class="close" onclick="hideLoginMessage()">&times;</span>
+                <div id="loginText"></div>
+            </div>
+    
+        </div>
+
+    
+        <div id="loginFailMessage" class="modal">
+
+            <!-- Modal content -->
+                <div class="modal-fail-content">
+                    <span class="close" onclick="hideFailLoginMessage()">&times;</span>
+                    <div id="loginFailText"></div>
+                </div>
+        
+            </div>
+
     
 
     <!-- The Modal -->
@@ -122,9 +151,9 @@
             
             <input class="center" id="newUser" placeholder="Your Username"></input>
             <br>
-            <input class="center" id="newRegistrationPassword" placeholder="Your Password"></input>
+            <input class="center" id="newRegistrationPassword" required placeholder="Your Password"></input>
             <br>
-            <button class="center LoginInFormButtons" onclick="registration()">Complete Registration</button>
+            <button class="center LoginInFormButtons" onclick="registration();hideRegistrationModal()">Complete Registration</button>
         </div>
 
     </div>
